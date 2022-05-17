@@ -1,0 +1,60 @@
+.products {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 30px 40px;
+  background-color: white;
+  box-shadow: 0 2px 0 #C7C7C7;
+  border-radius: 3px;
+
+  &__category-title {
+    font-weight: 500;
+    font-size: 33px;
+    color: $categoryText;
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 395px;
+    height: 110px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    background-color: #EAEDEF;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin-bottom: 30px;
+
+
+    &:nth-child(odd) {
+      margin-right: 30px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__title {
+    color: $text;
+    font-weight: 400;
+  }
+
+  &__amount {
+    color: $textBold;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  &__count {
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
