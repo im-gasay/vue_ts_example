@@ -26,7 +26,9 @@ export default class ItemProductComponent extends Vue {
   }
 
   addProductToCart(id: number) {
-    this.$store.commit('Cart/addItemToCart', id)
+    if (this.product.count > 0) {
+      this.$store.commit('Cart/addItemToCart', id)
+    }
   }
 }
 </script>
