@@ -21,6 +21,7 @@ export interface CartItemWithNames {
   id: number
   title: string
   count: number
+  availableCount: number
   price: number
 }
 
@@ -61,6 +62,7 @@ export default class CartComponent extends Vue {
         title: product.title,
         price: product.price,
         count: cartItem.count,
+        availableCount: product.count
       })
     }
 

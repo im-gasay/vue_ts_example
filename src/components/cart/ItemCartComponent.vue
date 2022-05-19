@@ -31,9 +31,18 @@ export default class ItemCartComponent extends Vue {
   }
 
   set count(value: number) {
+    let count = value
+    if (this.item.availableCount < value) {
+      count = this.item.availableCount
+    }
+
+    if (value <= 0) {
+      count = 1
+    }
+
     this.$store.commit('Cart/setCountCartItemById', {
       id: this.item.id,
-      count: value <= 0 ? 1 : value
+      count: count
     })
   }
 
