@@ -43,7 +43,7 @@ const mutations: MutationTree<ProductStateStorable> = {
 const getters: GetterTree<ProductStateStorable, RootState> = {
     getProducts: state => state.products,
     getNames: state => state.names,
-    getProductsWithNames: state => {
+    getProductsInCategoryWithNames: state => {
         const products: ProductsInCategory[] = []
 
         for (const [categoryId, categoryItem] of Object.entries(state.names) as ([string, CategoryItem][])) {

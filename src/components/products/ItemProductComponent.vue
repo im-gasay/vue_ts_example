@@ -4,7 +4,7 @@
     <div class="products__actions">
       <div class="products__amount">{{ priceWithSelectedCourse }} руб.</div>
       <div class="products__count">Осталось {{ product.count }} шт.</div>
-      <button class="products__button">Купить</button>
+      <button class="products__button" @click="addProductToCart(product.id)">Купить</button>
     </div>
   </div>
 </template>
@@ -23,6 +23,10 @@ export default class ItemProductComponent extends Vue {
 
   get priceWithSelectedCourse() {
     return this.product.price * this.currencyRubToUSD
+  }
+
+  addProductToCart(id: number) {
+    this.$store.commit('Cart/addItemToCart', id)
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <template
-        v-for="(categoryItem, categoryIndex) in getProductsWithNames"
+        v-for="(categoryItem, categoryIndex) in getProductsInCategoryWithNames"
         v-if="categoryItem.products.length > 0"
     >
       <item-category-component :key="`category-${categoryIndex}`" :category-title="categoryItem.title"/>
@@ -29,8 +29,8 @@ import {ProductsInCategory} from "@/store/modules/Products";
   }
 })
 export default class ProductsComponent extends Vue {
-  get getProductsWithNames(): ProductsInCategory {
-    return this.$store.getters["Products/getProductsWithNames"]
+  get getProductsInCategoryWithNames(): ProductsInCategory {
+    return this.$store.getters["Products/getProductsInCategoryWithNames"]
   }
 
   mounted () {
