@@ -17,11 +17,11 @@ import Product from "@/entites/Product";
 export default class ItemProductComponent extends Vue {
   @Prop() product!: Product
 
-  get currencyRubToUSD() {
+  get currencyRubToUSD(): number {
     return this.$store.getters["Currency/getRub"]
   }
 
-  get priceWithSelectedCourse() {
+  get priceWithSelectedCourse(): number {
     return this.product.price * this.currencyRubToUSD
   }
 

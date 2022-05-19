@@ -14,6 +14,8 @@
 import ItemCartComponent from "@/components/cart/ItemCartComponent.vue";
 import {Component, Vue} from "vue-property-decorator";
 import Product from "@/entites/Product";
+import {CartItem} from "@/store/modules/Cart";
+import {ProductsInCategory} from "@/store/modules/Products";
 
 export interface CartItemWithNames {
   id: number
@@ -26,15 +28,15 @@ export interface CartItemWithNames {
   components: {ItemCartComponent}
 })
 export default class CartComponent extends Vue {
-  get cart() {
+  get cart(): CartItem[] {
     return this.$store.getters["Cart/getCart"]
   }
 
-  get getProductsInCategoryWithNames() {
+  get getProductsInCategoryWithNames(): ProductsInCategory[] {
     return this.$store.getters["Products/getProductsInCategoryWithNames"]
   }
 
-  get productsWithNames() {
+  get productsWithNames(): Product[] {
     const products: Product[] = []
 
     for (const item of this.getProductsInCategoryWithNames) {
@@ -44,7 +46,7 @@ export default class CartComponent extends Vue {
     return products
   }
 
-  get cartWithNames() {
+  get cartWithNames(): CartItemWithNames[] {
     const cart: CartItemWithNames[] = []
 
     for (const cartItem of this.cart) {
@@ -69,14 +71,14 @@ export default class CartComponent extends Vue {
     return this.$store.getters["Currency/getRub"]
   }
 
-  get totalAmount() {
+  get totalAmount(): number {
     let total = 0
 
     for (const item of this.cartWithNames) {
       total += item.price * item.count * this.currency
     }
 
-    return total.toFixed(2)
+    return parseFloat(total.toFixed(2))
   }
 }
 </script>

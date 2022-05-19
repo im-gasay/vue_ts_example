@@ -22,8 +22,8 @@ export default class ItemCartComponent extends Vue {
     return this.$store.getters["Currency/getRub"]
   }
 
-  get priceWithSelectedCourse() {
-    return (this.item.price * this.item.count * this.currency).toFixed(2)
+  get priceWithSelectedCourse(): number {
+    return parseFloat((this.item.price * this.item.count * this.currency).toFixed(2))
   }
 
   get count(): number {
@@ -31,7 +31,6 @@ export default class ItemCartComponent extends Vue {
   }
 
   set count(value: number) {
-    console.log(value)
     this.$store.commit('Cart/setCountCartItemById', {
       id: this.item.id,
       count: value <= 0 ? 1 : value

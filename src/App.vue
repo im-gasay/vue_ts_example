@@ -6,7 +6,7 @@
     </div>
     <products-component />
     <CartComponent />
-    <footer class="footer">&copy; {{ currentYear }} Create by Konstantin Kelle with &#10084; for <a href="https://ooosoftnsk.ru/" target="_blank">SOFT/NSK</a></footer>
+    <footer class="footer">&copy; {{ currentYear }} Created by Konstantin Kelle with &#10084; for <a href="https://ooosoftnsk.ru/" target="_blank">SOFT/NSK</a></footer>
   </div>
 </template>
 
