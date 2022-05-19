@@ -1,9 +1,18 @@
 <template>
   <div class="products">
-    <item-category-component />
-    <div class="products__list">
-      <item-product-component v-for="index in 10" :key="index"/>
-    </div>
+    <template
+        v-for="(categoryItem, categoryIndex) in getProductsWithNames"
+        v-if="categoryItem.products.length > 0"
+    >
+      <item-category-component :key="`category-${categoryIndex}`" :category-title="categoryItem.title"/>
+      <div class="products__list" :key="`products_list-${categoryIndex}`">
+        <item-product-component
+            v-for="(product, productIndex) in categoryItem.products"
+            :key="`product-${productIndex}`"
+            :product="product"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -11,6 +20,7 @@
 import {Component, Vue} from "vue-property-decorator";
 import ItemProductComponent from "@/components/products/ItemProductComponent.vue";
 import ItemCategoryComponent from "@/components/products/ItemCategoryComponent.vue";
+import {ProductsInCategory} from "@/store/modules/Products";
 
 @Component({
   components: {
@@ -19,6 +29,13 @@ import ItemCategoryComponent from "@/components/products/ItemCategoryComponent.v
   }
 })
 export default class ProductsComponent extends Vue {
+  get getProductsWithNames(): ProductsInCategory {
+    return this.$store.getters["Products/getProductsWithNames"]
+  }
 
+  mounted () {
+    this.$store.dispatch('Products/loadProducts')
+    this.$store.dispatch('Products/loadNames')
+  }
 }
 </script>

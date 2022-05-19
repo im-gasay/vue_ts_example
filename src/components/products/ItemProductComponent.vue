@@ -1,19 +1,28 @@
 <template>
   <div class="products__item">
-    <div class="products__title">Алгоритмы. Построение и анализ. Т. Кормен, Ч. Лейзерсон, Р. Ривест, К. Штайн.</div>
+    <div class="products__title">{{ product.title }}</div>
     <div class="products__actions">
-      <div class="products__amount">45 руб.</div>
-      <div class="products__count">Осталось 48 шт.</div>
+      <div class="products__amount">{{ priceWithSelectedCourse }} руб.</div>
+      <div class="products__count">Осталось {{ product.count }} шт.</div>
       <button class="products__button">Купить</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Prop, Vue} from "vue-property-decorator";
+import Product from "@/entites/Product";
 
 @Component
 export default class ItemProductComponent extends Vue {
+  @Prop() product!: Product
 
+  get currencyRubToUSD() {
+    return this.$store.getters["Currency/getRub"]
+  }
+
+  get priceWithSelectedCourse() {
+    return this.product.price * this.currencyRubToUSD
+  }
 }
 </script>
